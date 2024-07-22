@@ -11,12 +11,12 @@ const userlogin = async (req,res)=>{
     const {email,password} = req.body
     
     const data =[email,password]
-    const [user] = await db.query("select userid, email, password from users where email=?  ",[email])
     
     if(!email || !password)
-      return res.json({msg:"please enter required fields"})
+      return res.json({msg:"please enter required fields. "})
 // ------------------------------------------------------------------------------------------------------------------------------------
-  if(user.length == 0)
+const [user] = await db.query("select userid, email, password from users where email=?  ",[email])
+if(user.length == 0)
     return res.json({msg:"password or user name not correct"})
 // ------------------------------------------------------------------------------------------------------------------------------------
 
@@ -33,7 +33,7 @@ const userlogin = async (req,res)=>{
       const email  = user[0].email
       const token  = await jwt.sign({userid,email},process.env.SECERET,{expiresIn:"1h"})
       
-    return res.json({token:token})
+    return res.json({msg:"Login",token:token})
     } catch (error) {
         return res.json({msg:"something went wrong , try again"})
     }

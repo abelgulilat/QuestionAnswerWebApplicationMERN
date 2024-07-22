@@ -7,10 +7,11 @@ const userdisplay = (req,res) =>{
 }
 
 const userregister = async (req,res) =>{
-    const { userid, username, email, firstname, lastname, password } = req.body;
+    const {username, email, firstname, lastname, password } = req.body;
+    console.log("check")
 // ---------------------------------------------------------------------------------------------------
-if(!userid||!username||!email||!firstname||!lastname||!password)
-    return res.json({msg:"It cannot be a blank field."})
+if(!username||!email||!firstname||!lastname||!password)
+    return res.json({msg:"It cannot be a blank fields."})
 // ---------------------------------------------------------------------------------------------------
 if(password.length<8)
     return res.json({msg:"The password cannot be less than 8."})
@@ -28,15 +29,26 @@ const hashpass = await bcrypt.hash(password,salt);
 // ---------------------------------------------------------------------------------------------------
 
 try{
-    await db.query("insert into users (userid,username,firstname,lastname,email,password) values (?,?,?,?,?,?)" ,[userid,username,firstname,lastname,email,hashpass])
+    await db.query("insert into users (username,firstname,lastname,email,password) values (?,?,?,?,?)" ,[username,firstname,lastname,email,hashpass])
     return res.json({ msg: "user registred successfully`````````" });
 
 }catch(err){
     return res.json({msg:"something went wrong, try again"});
 }
 }
+const returnusername = async (req,res)=>{
+    const userid = req.identity.userid
+    const [name] = await db.query("select firstname from users where userid = ?  ",[userid])
+    return res.json({name})
+}
+
+const check = async (req,res) =>{
+    const  { email, userid } = req.identity 
+    const [name] = await db.query("select firstname from users where userid = ?  ",[userid])
+    return res.json({email,userid,name})
+}
 
 
 
 
-export { userdisplay, userregister }
+export { userdisplay, userregister, returnusername, check }

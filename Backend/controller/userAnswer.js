@@ -1,5 +1,16 @@
 import db from "../config/config.js"
 
+const answerdisplaytitleonly = async (req,res)=>{
+    const questionid = req.params.questionid
+    console.log(questionid)
+   try {
+    const [question] = await db.query("select  userid, answer from answers where questionid = ?",[questionid])
+    return res.json({question})
+   } catch (error) {
+    return res.json({msg:"something went wrong"})
+     
+   }
+} 
 const answerdisplay = async (req,res)=>{
    try {
     const [answer] = await db.query("select * from answers")
@@ -12,17 +23,16 @@ const answerdisplay = async (req,res)=>{
 
 const answerRegister = async (req,res)=>{
 
-    const {answerid,answer} = req.body;
-    if(!answerid || !answer)
+    const { userid, email } = req.identity
+    const questionid = req.params.questionid
+    const answer = req.body.answer
+    console.log(questionid)
+    if( !answer)
         return res.json({msg:"please fill required fields"})
     
-    // console.log(user[0].userid)
-    // const { userid, email } = req.user
-    const userid = "2";
-    const questionid = "4";
+    await db.query("insert into answers (userid,questionid,answer) values(?,?,?)",[userid,questionid,answer])
   
     try {
-    await db.query("insert into answers (answerid,userid,questionid,answer) values(?,?,?,?)",[answerid,userid,questionid,answer])
         
         return res.json({msg:"answer submited"})
         
@@ -33,4 +43,4 @@ const answerRegister = async (req,res)=>{
 
 }
 
-export {answerdisplay,answerRegister}
+export {answerdisplaytitleonly, answerdisplay,answerRegister}

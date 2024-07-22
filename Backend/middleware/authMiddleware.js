@@ -5,16 +5,19 @@ dotenv.config({path:"./config/config.env"})
 
 const auto = async (req,res,next)=>{
     const autheader = req.headers.authorization;
-    if (!autheader)
+    if (!autheader||!autheader.startsWith("Bearer"))
         return res.json({msg:"Authentication invalid"})
-    const token = autheader;
-    const { email, userid } = jwt.verify( token, process.env.SECERET )
-    console.log(email,userid)
+    console.log("i am reached there",autheader)
+
+    const token = autheader.split(" ")[1];
     
     try {
+        const { email, userid } = await jwt.verify( token, process.env.SECERET )
+        req.identity = { email, userid } 
         next();
         
     } catch (error) {
+        
         return res.json({msg:"something went wrong"})
     }
 
