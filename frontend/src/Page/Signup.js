@@ -28,24 +28,24 @@ const Signup = () => {
 
   return (
     <div>
-        <form onSubmit={submitHandle} >
+        <form className='formtwo' onSubmit={submitHandle} >
             <div>
-                <input type='text' name='username' ref={usernameValue} id='username' placeholder='User Name'/>
+                <input type='text' className='usernametwo' name='username' ref={usernameValue} id='username' placeholder='User Name'/>
             </div>
             <div>
-                <input type='text' name='firstname' ref={firstnameValue} id='firstname' placeholder='First Name'/>
+                <input type='text' className='firstnametwo' name='firstname' ref={firstnameValue} id='firstname' placeholder='First Name'/>
             </div>
             <div>
-                <input type='text' name='lastname' ref={lastnameValue} id='lastname' placeholder='Last Name'/>
+                <input type='text' className='lastnametwo' name='lastname' ref={lastnameValue} id='lastname' placeholder='Last Name'/>
             </div>
             <div>
-                <input type='text' name='email' ref={emailValue} id='email' placeholder='Email'/>
+                <input type='text' className='emailtwo' name='email' ref={emailValue} id='email' placeholder='Email'/>
             </div>
             <div>
-                <input type='text' name='password' ref={passwordValue} id='password' placeholder='Password '/>
+                <input type='text' className='passwordtwo' name='password' ref={passwordValue} id='password' placeholder='Password '/>
             </div>
             <div>
-                <input type='submit' value='Signup'   />
+                <input type='submit'  className='signuptwo' value='Signup'   />
             </div>
         </form>
     </div>

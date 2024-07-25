@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import "../asstes/CSS/Login.css"
 import axios from "axios"
 import { NavLink, useNavigate } from 'react-router-dom'
 
@@ -26,22 +27,23 @@ const Login = () => {
   }
   return (
     <div>
-       <form onSubmit={submitHandle} >
-           
-            <div>
-                <input type='text' name='email' ref={emailValue} id='email' placeholder='Email'/>
+      <form className='formone' onSubmit={submitHandle} >
+            
+            <div >
+                <input type='text' name='email' ref={emailValue} className='emailone' id='email' placeholder='Email'/>
             </div>
             <div>
-                <input type='text' name='password' ref={passwordValue} id='password' placeholder='Password '/>
+                <input type='text' name='password' ref={passwordValue} className='emailone' id='password' placeholder='Password '/>
             </div>
             <div>
-                <input type='submit' value='Signin'   />
+                <input type='submit' className='signinone' value='Signin'   />
             </div>
-        </form>
+            <div>
+                <NavLink to={"/signup"}  > <p className='signupone'>Create a New Account </p> </NavLink>
+            </div>
+      </form>
         <br/>
-        <div>
-                <NavLink to={"/signup"}>  SIGNUP</NavLink>
-            </div>
+       
 
     </div>
   )
