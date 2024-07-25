@@ -26,8 +26,13 @@ const Login = () => {
       }
   }
   return (
-    <div>
+    <div className='login'>
+      
       <form className='formone' onSubmit={submitHandle} >
+            <div className='top'>
+                <p> Login to Your Account</p><br/>
+                <p>Don't have Account? <NavLink to={"/signup"} className={"signupone"}>  Create a New Account</NavLink></p>
+            </div>
             
             <div >
                 <input type='text' name='email' ref={emailValue} className='emailone' id='email' placeholder='Email'/>
@@ -36,10 +41,10 @@ const Login = () => {
                 <input type='text' name='password' ref={passwordValue} className='emailone' id='password' placeholder='Password '/>
             </div>
             <div>
-                <input type='submit' className='signinone' value='Signin'   />
+                <input type='submit' className='signinone' value='Login'   />
             </div>
             <div>
-                <NavLink to={"/signup"}  > <p className='signupone'>Create a New Account </p> </NavLink>
+                <NavLink to={"/signup"}  className={"signupone"}> <p className='signupone'>Create a New Account </p> </NavLink>
             </div>
       </form>
         <br/>
