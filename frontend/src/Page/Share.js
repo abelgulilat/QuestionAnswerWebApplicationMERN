@@ -5,7 +5,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 const Share = () => {
   return (
     <div>
-        <NavLink to={"/home"}>Home</NavLink>
+        <NavLink className={"hometop"} to={"/home"}>Home</NavLink>
         <Outlet/>
     </div>
   )

@@ -2,6 +2,16 @@
     padding: 0;margin: 0;
     
 }
+.hometop{
+    margin: 20px 0 0 20px;
+    border: 1px solid blueviolet;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: blueviolet;
+    color: white;
+}
+/* ////////////////////////////////////////// HOME ///////////////////////////////////////////////// */
 
 .login{
     border: 1px solid rgb(121, 123, 230);
@@ -92,7 +102,6 @@
 .fullname{
     display: flex;
     width: 100%;
-    /* border: 1px solid black; */
     margin: 0 0 0 3%;
     
 }
@@ -110,3 +119,117 @@
     color: white;
 }
 
+
+/* ////////////////////////////////////////// Home  ///////////////////////////////////////////////// */
+
+.logout{
+    margin: 0 0 0 90%;
+    color: black;
+    border: 1px solid blueviolet;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: blueviolet;
+    color: white;
+    
+}
+.welcome{
+    text-align: center;
+}
+.ask{
+    margin: 0 0 0 5%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid blueviolet;
+    background-color: blueviolet;
+    color: white;
+
+}
+.qdisplay{
+    padding: 10px 0 0 20px;
+
+}
+td{
+    padding: 10px 0 0 30px;
+    font-size: 0.9em;
+}
+
+.toprow{
+    /* background-color: aqua; */
+    border: 1px solid black;
+}
+/* //////////////////////////////////////////   Question and Answer  ///////////////////////////////////////////////// */
+
+
+.qatitle{
+    text-align: center;
+}
+.qaa{
+    margin: 20px 0 30px 20px;
+}
+.qaform{
+    display: flex;
+    justify-content: center;
+}
+.answer{
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    margin: 0 0 10px 0;
+    border: 1px solid blueviolet;
+}
+.answersubmit{
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid blueviolet;
+    background-color: blueviolet;
+    color: white;
+
+}
+/* //////////////////////////////////////////   Ask Question  ///////////////////////////////////////////////// */
+
+.askq{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    height: 80vh;
+}
+.formask{
+    background-color:#f2f2f2;
+    border: 1px solid #F5F5F7;
+
+}
+ul{
+    margin: 0 0 20px 0;
+}
+#title{
+    width: 100%;
+    padding: 10px ;
+    border-radius: 10px;
+    margin: 0 0 10px 0;
+    border: 1px solid blueviolet;
+}
+#Describition{
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px ;
+    margin: 0  0 10px 0;
+    border: 1px solid blueviolet;
+
+
+}
+.asksubmition{
+    width: 100%;
+    padding: 10px ;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: blueviolet;
+    color: white;
+    border: 1px solid blueviolet;
+
+
+}
+.asksubmition:hover{
+    color: #45a049;
+}

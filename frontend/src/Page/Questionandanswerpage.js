@@ -1,6 +1,7 @@
 
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import axios from "axios"
+import "../asstes/CSS/Login.css"
 import { NavLink, useParams } from 'react-router-dom';
 import { AppState } from '../App';
 import { AppQuestion } from './Home';
@@ -12,13 +13,12 @@ const Questionandanswerpage = () => {
     const [result,setResult] = useState([]);
     const [replay,setReplay] = useState([]);
     const [answers,setAnswer] = useState(" ");
-    // const [questionsid, setId] = useState({})
     const {user} = useContext(AppState)
   useEffect(()=>{
     fetechQuestion();
     fetechAnswer();
   },[])
- 
+
 console.log("question and answer",questionid)
 const token = localStorage.getItem("token")
   const fetechAnswer = async ()=>{
@@ -31,7 +31,7 @@ const token = localStorage.getItem("token")
       setReplay(data.question)
       console.log("fetechAnswer",data.question)
     } catch (error) {
-       console.log("Something Went Wrong")
+        console.log("Something Went Wrong")
     }
 
   }
@@ -39,7 +39,6 @@ const token = localStorage.getItem("token")
   const fetechQuestion = async ()=>{
     try {
       const token = localStorage.getItem("token")
-
       const {data} =  await axios.get(`http://localhost:5500/api/v1/question/questiondisplayqa/${questionid}`,{
         headers:{
           Authorization:"Bearer " + token
@@ -55,7 +54,6 @@ const token = localStorage.getItem("token")
     const handleAnswer = async (e) =>{
     e.preventDefault();
     setAnswer(e.target.value)
-
     }
 
   const submitHandle = async (e) =>{
@@ -71,9 +69,7 @@ const token = localStorage.getItem("token")
       }
     }
   )
-  // setId(3)
   
-
     alert(data.msg)
     } catch (error) {
       console.log("something went wrong")
@@ -82,39 +78,40 @@ const token = localStorage.getItem("token")
   }
   return (
     <div>
-      <h1>Question and answer page</h1>
-{/* <NavLink to={"/askquestion"}>Ask Question</NavLink> */}
-<input type='button' onClick={logout} value={"Logout"}/>
+      <input type='button' className='logout' onClick={logout} value={"Logout"}/>
+        <div className='titleanswer'>
+          <div>
+          <h3 className='qatitle'>{result.map((item,index)=>(
+                            <div>
+                              <h1> {item.title } </h1> 
+                              <h3> {item.description} </h3> 
+                            </div>
+                        ))}
+          </h3>
+        
+          <h4>{replay.map((item,index)=>(
+                        <ul className='qaa'>
+                            <li> {item.answer} </li> 
+                            
+                        </ul>
+                        ))}
+          </h4>
 
-<h1>{result.map((item,index)=>(
-                
-                    <div>
-                      <h1> {item.title } </h1> 
-                    <h3> {item.description} </h3> 
-              
-                    </div>
-                 ))}</h1>
-<h3>{replay.map((item,index)=>(
-                <ul>
-                    <li> {item.answer} </li> 
-                    
-                </ul>
-                 ))}</h3>
 
 
 
-{/* <h2>{user}as</h2> */}
-        <form onSubmit={submitHandle} >
-           
-           <div>
-               <input type='text' name='Answer' onChange={handleAnswer} id='Answer' placeholder='Answer'/>
-           </div>
-           
-           <div>
-               
-               <input type='submit' value='Answer Submit'   />
-           </div>
-       </form>
+          <form className='qaform' onSubmit={submitHandle} >
+              <div>
+                <div>
+                    <textarea className='answer' name='Answer' onChange={handleAnswer} id='Answer' placeholder='Answer'/>
+                </div>
+                <div>
+                    <input type='submit' className='answersubmit' value='Answer Submit'   />
+                </div>
+              </div>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useRef, useState } from 'react'
 import axios from "axios"
+import "../asstes/CSS/Login.css"
 import { NavLink, useNavigate } from 'react-router-dom';
 import { logout } from './Logout.js';
 import {AppState} from "../App.js"
@@ -47,16 +48,11 @@ const [result,setResult] = useState([]);
     } )
       console.log("Home TiTle ",data)
       setResult(data.question);
-      // setQuestionidstate(data)
-      console.log("user_id ",userid.user)
   }
 
     catch (error) {
       console.log("something went wrong")
     }
-  
-    
-    
   }
 
 
@@ -65,23 +61,25 @@ const [result,setResult] = useState([]);
 
   return (
     <AppQuestion.Provider value={{questionidstate,setQuestionidstate}}>
-        {/* <h1>Welcome {userid.user.name[0].firstname}</h1> */}
-      <input type='button' onClick={logout} value={"Logout"}/>
-
-        <h1>Welcome {firstName}</h1>
-      <NavLink to={"/askquestion"}> <input type='button' value={"Ask Question"}/></NavLink>
-
-     
-      <h1>{result.map((item,index)=>(
-                <tr>
-                    <td>{item.questionid}--- {item.title}----{item.userid} </td> 
-                    <td><NavLink to={`/qa/${item.questionid}`}> {item.title} </NavLink></td>
-                    
+      <br/>
+      <input type='button' className='logout' onClick={logout} value={"Logout"}/>
+      <h1 className='welcome'>Welcome {firstName}</h1>
+      <NavLink  to={"/askquestion"}> <input type='button' className={"ask"} value={"Ask Question"}/></NavLink>
+      <br/><br/>
+      
+      <table className='qdisplay'>
+        <tr className='toprow'>
+            <td>USER ID</td>
+            <td>TITLE</td>                   
+        </tr>
+        {result.map((item,index)=>(
+                <tr >
+                    <td>{item.userid}</td>
+                    <td><NavLink to={`/qa/${item.questionid}`}> {item.title} </NavLink></td>                   
                 </tr>
-                 ))}</h1>
+        ))}
+      </table>
 
-        <h2>{userid.user.email}</h2>
-        <h2>{userid.user.userid}</h2>
     </AppQuestion.Provider>
   )
 }

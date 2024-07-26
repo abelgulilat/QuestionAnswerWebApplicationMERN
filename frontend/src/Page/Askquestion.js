@@ -44,28 +44,29 @@ const submitHandle = async (e)=>{
 }
 
   return (
-    <div>
-      <ul>
-        <li>Summarize your problem in a one-line title.</li>
-        <li>Describe your problem in more detail.</li>
-        <li>Describe what you tried and what you expected to happen.</li>
-        <li>Review your question and post it to the site.</li>
+    <div >
+      <input type='button' className='logout' onClick={logout} value={"Logout"}/>
 
-      </ul>
-      <input type='button' onClick={logout} value={"Logout"}/>
-      <form onSubmit={submitHandle} >
-           
-           <div>
-               <input type='text' name='title' onChange={handleTitle} maxLength={30} id='title' placeholder='TITLE'/>
-           </div>
-           <div>
-               <input type='text' name='Describition' ref={handleDescription} id='Describition' placeholder='Describition'/>
-           </div>
-           
-           <div>
-               <input type='submit' value='Question Submit'   />
-           </div>
-       </form>
+      <span className='askq'>
+      
+        <form className='formask' onSubmit={submitHandle} >
+            <ul>
+              <li>Summarize your problem in a one-line title.</li>
+              <li>Describe your problem in more detail.</li>
+              <li>Describe what you tried and what you expected to happen.</li>
+              <li>Review your question and post it to the site.</li>
+            </ul>
+            <div>
+                  <input type='text' name='title' onChange={handleTitle} maxLength={30} id='title' placeholder='TITLE'/>
+            </div>
+            <div>
+                <textarea rows={"3"} ref={handleDescription} name='Describition'  id='Describition' placeholder='DESCRIBITION'></textarea>
+            </div>
+            <div>
+                <input type='submit' className='asksubmition' value='Question Submit'   />
+            </div>
+        </form>
+      </span>
     </div>
   )
 }
