@@ -30,9 +30,9 @@ const answerRegister = async (req,res)=>{
     if( !answer)
         return res.json({msg:"please fill required fields"})
     
-    await db.query("insert into answers (userid,questionid,answer) values(?,?,?)",[userid,questionid,answer])
   
     try {
+        await db.query("insert into answers (userid,questionid,answer) values(?,?,?)",[userid,questionid,answer])
         
         return res.json({msg:"answer submited"})
         

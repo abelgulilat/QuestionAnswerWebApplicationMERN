@@ -13,27 +13,27 @@ const userlogin = async (req,res)=>{
     const data =[email,password]
     
     if(!email || !password)
-      return res.json({msg:"please enter required fields. "})
+        return res.status(201).json({msg:"please enter required fields. "})
 // ------------------------------------------------------------------------------------------------------------------------------------
 const [user] = await db.query("select userid, email, password from users where email=?  ",[email])
 if(user.length == 0)
-    return res.json({msg:"password or user name not correct"})
+    return res.status(201).json({msg:"password or user name not correct"})
 // ------------------------------------------------------------------------------------------------------------------------------------
 
-  const isMatch = await bcrypt.compare(password, user[0].password);
+    const isMatch = await bcrypt.compare(password, user[0].password);
 
 
-  if(!isMatch || user.length == 0)
-      return res.json({msg:"password or user name not correct"})
+    if(!isMatch || user.length == 0)
+        return res.status(201).json({msg:"password or user name not correct"})
 // ------------------------------------------------------------------------------------------------------------------------------------
 
-      try {
-         
-      const userid = user[0].userid
-      const email  = user[0].email
-      const token  = await jwt.sign({userid,email},process.env.SECERET,{expiresIn:"1h"})
-      
-    return res.json({msg:"Login",token:token})
+        try {
+            
+        const userid = user[0].userid
+        const email  = user[0].email
+        const token  = await jwt.sign({userid,email},process.env.SECERET,{expiresIn:"1h"})
+        return res.status(200).json({msg:"Login",token:token})
+
     } catch (error) {
         return res.json({msg:"something went wrong , try again"})
     }

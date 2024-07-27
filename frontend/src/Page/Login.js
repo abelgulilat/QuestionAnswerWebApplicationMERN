@@ -12,15 +12,17 @@ const Login = () => {
       e.preventDefault();
       console.log(emailValue.current.value)
       try {
-        const {data} = await axios.post("http://localhost:5500/api/v1/users/login",{
-         
+        const res = await axios.post("http://localhost:5500/api/v1/users/login",{
+        
           email:emailValue.current.value,
           password:passwordValue.current.value
+          
       })
-      go("/home")
+      if(res.status == "200")
+        go("/home")
 
-     alert(data.msg)
-     localStorage.setItem("token",data.token)
+      alert(res.data.msg)
+      localStorage.setItem("token",res.data.token)
       } catch (error) {
           alert ("Something went wrong")
       }
@@ -28,7 +30,7 @@ const Login = () => {
   return (
     <div className='login'>
       
-      <form className='formone' onSubmit={submitHandle} >
+      <form className='formone' onSubmit={submitHandle} method='post'>
             <div className='top'>
                 <p> Login to Your Account</p><br/>
                 <p>Don't have Account? <NavLink to={"/signup"} className={"signupone"}>  Create a New Account</NavLink></p>
@@ -48,7 +50,7 @@ const Login = () => {
             </div>
       </form>
         <br/>
-       
+      
 
     </div>
   )

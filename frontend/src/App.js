@@ -9,7 +9,7 @@ function App() {
   const go  = useNavigate()
 
   const checkuser = async () =>{
-   try {
+  try {
     console.log("Appjs frontend")
     const token = localStorage.getItem("token")
     const {data} = await axios.get("http://localhost:5500/api/v1/users/check",{
@@ -19,9 +19,9 @@ function App() {
     })
     console.log("Appjs",data)
     setUser(data)
-   } catch (error) {
+  } catch (error) {
         go("/login")
-   }
+  }
   }
   useEffect(()=>{
     checkuser()
