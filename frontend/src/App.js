@@ -12,13 +12,17 @@ function App() {
   try {
     console.log("Appjs frontend")
     const token = localStorage.getItem("token")
-    const {data} = await axios.get("http://localhost:5500/api/v1/users/check",{
+    const resp = await axios.get("http://localhost:5500/api/v1/users/check",{
       headers:{
         Authorization:"Bearer " + token
       }
     })
-    console.log("Appjs",data)
-    setUser(data)
+    console.log("Appjs rep data",resp.status)
+    if (resp.status=="201")
+      go("/login")
+    setUser(resp.data)
+
+    
   } catch (error) {
         go("/login")
   }

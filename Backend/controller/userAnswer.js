@@ -4,7 +4,7 @@ const answerdisplaytitleonly = async (req,res)=>{
     const questionid = req.params.questionid
     console.log(questionid)
    try {
-    const [question] = await db.query("select  userid, answer from answers where questionid = ?",[questionid])
+    const [question] = await db.query("select  userid, answer from answers  where questionid = ? order by answerid desc",[questionid])
     return res.json({question})
    } catch (error) {
     return res.json({msg:"something went wrong"})
@@ -13,7 +13,7 @@ const answerdisplaytitleonly = async (req,res)=>{
 } 
 const answerdisplay = async (req,res)=>{
    try {
-    const [answer] = await db.query("select * from answers")
+    const [answer] = await db.query("select * from answers order by answerid desc ")
     return res.json({answer})
    } catch (error) {
     return res.json({msg:"something went wrong"})

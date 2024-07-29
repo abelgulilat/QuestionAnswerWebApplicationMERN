@@ -18,7 +18,7 @@ const auto = async (req,res,next)=>{
         
     } catch (error) {
         
-        return res.json({msg:"something went wrong"})
+        return res.status(201).json({msg:"something went wrong"})
     }
 
 }

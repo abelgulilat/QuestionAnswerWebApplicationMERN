@@ -28,7 +28,7 @@ const [result,setResult] = useState([]);
       }
     } )
     setFirstName(data.name[0].firstname)
-    console.log("returnusername",data.name[0].firstname)
+    console.log("returnusername",data)
 
     } catch (error) {
       console.log("something went wrong")
@@ -51,6 +51,7 @@ const [result,setResult] = useState([]);
   }
 
     catch (error) {
+      go("/login")
       console.log("something went wrong")
     }
   }
