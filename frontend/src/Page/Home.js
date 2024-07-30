@@ -70,12 +70,13 @@ const [result,setResult] = useState([]);
       
       <table className='qdisplay'>
         <tr className='toprow'>
-            <td>USER ID</td>
+            <td>USER NAME</td>
             <td>TITLE</td>                   
         </tr>
         {result.map((item,index)=>(
                 <tr >
-                    <td>{item.userid}</td>
+                    {/* <td>{item.userid}</td> */}
+                    <td>{item.username}</td>
                     <td><NavLink to={`/qa/${item.questionid}`}> {item.title} </NavLink></td>                   
                 </tr>
         ))}

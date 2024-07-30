@@ -15,7 +15,7 @@ const userlogin = async (req,res)=>{
     if(!email || !password)
         return res.status(201).json({msg:"please enter required fields. "})
 // ------------------------------------------------------------------------------------------------------------------------------------
-const [user] = await db.query("select userid, email, password from users where email=?  ",[email])
+const [user] = await db.query("select userid, username, email, password from users where email=?  ",[email])
 if(user.length == 0)
     return res.status(201).json({msg:"password or user name not correct"})
 // ------------------------------------------------------------------------------------------------------------------------------------
@@ -31,7 +31,9 @@ if(user.length == 0)
             
         const userid = user[0].userid
         const email  = user[0].email
-        const token  = await jwt.sign({userid,email},process.env.SECERET,{expiresIn:"1h"})
+        const username  = user[0].username
+console.log("now",username)
+        const token  = await jwt.sign({email, userid, username},process.env.SECERET,{expiresIn:"1h"})
         return res.status(200).json({msg:"Login",token:token})
 
     } catch (error) {

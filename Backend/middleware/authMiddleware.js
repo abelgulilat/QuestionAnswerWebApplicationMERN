@@ -12,8 +12,9 @@ const auto = async (req,res,next)=>{
     const token = autheader.split(" ")[1];
     
     try {
-        const { email, userid } = await jwt.verify( token, process.env.SECERET )
-        req.identity = { email, userid } 
+        const { email, userid, username } = await jwt.verify( token, process.env.SECERET )
+        req.identity = { email, userid, username } 
+        console.log(username)
         next();
         
     } catch (error) {

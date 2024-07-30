@@ -23,7 +23,7 @@ console.log("question and answer",questionid)
 const token = localStorage.getItem("token")
   const fetechAnswer = async ()=>{
     try {
-      const {data} =  await axios.get(`http://localhost:5500/api/v1/answer/answerdisplaytitleonly/${questionid}`,{
+        const {data} =  await axios.get(`http://localhost:5500/api/v1/answer/answerdisplaytitleonly/${questionid}`,{
         headers:{
           Authorization:"Bearer " + token
         }
@@ -59,8 +59,8 @@ const token = localStorage.getItem("token")
   const submitHandle = async (e) =>{
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token")
-      const {data} = await axios.post(`http://localhost:5500/api/v1/answer/answerregister/${questionid}`,{
+        const token = localStorage.getItem("token")
+        const {data} = await axios.post(`http://localhost:5500/api/v1/answer/answerregister/${questionid}`,{
         
         answer:answers
     },{
@@ -70,7 +70,7 @@ const token = localStorage.getItem("token")
     }
   )
   
-    alert(data.msg)
+      alert(data.msg)
     } catch (error) {
       console.log("something went wrong")
     }
@@ -91,7 +91,7 @@ const token = localStorage.getItem("token")
         
           <h4>{replay.map((item,index)=>(
                         <ul className='qaa'>
-                            <li> {item.answer} </li> 
+                            <li><i>{item.username}</i> ----   {item.answer} </li> 
                             
                         </ul>
                         ))}

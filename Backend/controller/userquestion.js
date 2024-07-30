@@ -13,7 +13,7 @@ const questiondisplayforqa = async (req,res)=>{
 } 
 const questiondisplay = async (req,res)=>{
     try {
-        const [question] = await db.query("select userid, questionid, title from questions order by questionid desc")
+        const [question] = await db.query("select userid, username, questionid, title from questions order by questionid desc")
         return res.json({question})
     } catch (error) {
         return res.json({msg:"something went wrong"})
@@ -31,9 +31,9 @@ const questionRegister = async (req,res)=>{
         if(data.length>0)
             return res.json({msg:"please enter the title again ",data:data})
     
-    const { userid, email } = req.identity
+    const { userid, username, email } = req.identity
     
-    await db.query("insert into questions(userid,title,description) values(?,?,?)",[userid,title,description])
+    await db.query("insert into questions(userid,username,title,description) values(?,?,?,?)",[userid,username,title,description])
 
     try {
     // await db.query("insert into questions (questionid,userid,title,description) values(?,?,?,?)",[questionid,userid,title,description])
