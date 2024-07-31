@@ -26,8 +26,8 @@ const answerRegister = async (req,res)=>{
     const { userid, email, username } = req.identity
     const questionid = req.params.questionid
     const answer = req.body.answer
-    console.log(questionid)
-    if( !answer)
+    console.log("answer ", answer.length)
+    if(!answer||answer.length == 1)
         return res.json({msg:"please fill required fields"})
     
     await db.query("insert into answers (userid,username,questionid,answer) values(?,?,?,?)",[userid,username,questionid,answer])

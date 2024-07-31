@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import axios from "axios"
 import "../asstes/CSS/Login.css"
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { AppState } from '../App';
 import { AppQuestion } from './Home';
 import {logout} from "./Logout.js"
@@ -14,11 +14,13 @@ const Questionandanswerpage = () => {
     const [replay,setReplay] = useState([]);
     const [answers,setAnswer] = useState(" ");
     const {user} = useContext(AppState)
+    const go = useNavigate();
+
+
   useEffect(()=>{
     fetechQuestion();
     fetechAnswer();
   },[])
-
 console.log("question and answer",questionid)
 const token = localStorage.getItem("token")
   const fetechAnswer = async ()=>{
@@ -71,6 +73,8 @@ const token = localStorage.getItem("token")
   )
   
       alert(data.msg)
+      
+      
     } catch (error) {
       console.log("something went wrong")
     }
@@ -84,7 +88,7 @@ const token = localStorage.getItem("token")
           <h3 className='qatitle'>{result.map((item,index)=>(
                             <div>
                               <h1> {item.title } </h1> 
-                              <h3> {item.description} </h3> 
+                              <p> {item.description} </p> 
                             </div>
                         ))}
           </h3>
@@ -106,7 +110,7 @@ const token = localStorage.getItem("token")
                     <textarea className='answer' name='Answer' onChange={handleAnswer} id='Answer' placeholder='Answer'/>
                 </div>
                 <div>
-                    <input type='submit' className='answersubmit' value='Answer Submit'   />
+                    <input type='submit'  className='answersubmit' value='Answer Submit'   />
                 </div>
               </div>
           </form>

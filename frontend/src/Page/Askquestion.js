@@ -34,11 +34,12 @@ const submitHandle = async (e)=>{
     }
   )
     alert(data.data.msg)
-    go("/home")
+    if(data.status == "200")
+      go("/home")
     
     } catch (error) {
       go("/login")
-      console.log("something went wrongs")
+      console.log("something went wrong")
 
     }
 }
